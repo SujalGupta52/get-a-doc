@@ -1,29 +1,38 @@
-import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import HomePage from "./pages/HomePage";
-import DoctorsPage from "./pages/DoctorsPage";
-import PatientsPage from "./pages/PatientsPage";
-import AppointmentsPage from "./pages/AppointmentsPage";
-import { Box } from "@chakra-ui/react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "./App.css";
+import DoctorList from "./components/DoctorList";
+import PatientList from "./components/PatientList";
+import AppointmentList from "./components/AppointmentList";
 
 function App() {
     return (
-        <Box>
-            <NavBar />
-            <Box pt="60px">
-                {" "}
-                {/* Add padding to prevent content from being hidden behind fixed NavBar */}
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/doctors">Doctors</Link>
+                        </li>
+                        <li>
+                            <Link to="/patients">Patients</Link>
+                        </li>
+                        <li>
+                            <Link to="/appointments">Appointments</Link>
+                        </li>
+                    </ul>
+                </nav>
+
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/doctors" element={<DoctorsPage />} />
-                    <Route path="/patients" element={<PatientsPage />} />
+                    <Route path="/doctors" element={<DoctorList />} />
+                    <Route path="/patients" element={<PatientList />} />
+                    <Route path="/appointments" element={<AppointmentList />} />
                     <Route
-                        path="/appointments"
-                        element={<AppointmentsPage />}
+                        path="/"
+                        element={<h2>Home - Welcome to the Clinic</h2>}
                     />
                 </Routes>
-            </Box>
-        </Box>
+            </div>
+        </Router>
     );
 }
 
