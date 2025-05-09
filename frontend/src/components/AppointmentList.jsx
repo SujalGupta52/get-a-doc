@@ -100,8 +100,8 @@ function AppointmentList() {
         }
 
         const appointmentData = {
-            doctorId: parseInt(doctorId),
-            patientId: parseInt(patientId),
+            doctor: { id: parseInt(doctorId) },
+            patient: { id: parseInt(patientId) },
             appointmentTime,
             status,
         };
@@ -127,8 +127,8 @@ function AppointmentList() {
 
     const handleEdit = (appointment) => {
         setEditingAppointment(appointment);
-        setDoctorId(String(appointment.doctorId));
-        setPatientId(String(appointment.patientId));
+        setDoctorId(appointment.doctor ? String(appointment.doctor.id) : "");
+        setPatientId(appointment.patient ? String(appointment.patient.id) : "");
         const localDateTime = new Date(appointment.appointmentTime)
             .toISOString()
             .slice(0, 16);
@@ -456,11 +456,15 @@ function AppointmentList() {
                                         primaryTypographyProps={{
                                             fontWeight: "medium",
                                         }}
-                                        primary={`Dr. ${getDoctorName(
-                                            appointment.doctorId
-                                        )} with ${getPatientName(
-                                            appointment.patientId
-                                        )}`}
+                                        primary={`Dr. ${
+                                            appointment.doctor
+                                                ? appointment.doctor.name
+                                                : "Unknown Doctor"
+                                        } with ${
+                                            appointment.patient
+                                                ? appointment.patient.name
+                                                : "Unknown Patient"
+                                        }`}
                                         secondary={
                                             <>
                                                 {new Date(

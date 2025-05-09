@@ -30,11 +30,7 @@ function Footer() {
                     variant="body2"
                     color="text.secondary"
                     align="center"
-                >
-                    <Link color="inherit" href="https://github.com/your-repo">
-                        View on GitHub
-                    </Link>
-                </Typography>
+                ></Typography>
             </Container>
         </Box>
     );
