@@ -1,5 +1,6 @@
 package com.webapp.getadoc.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Patient {
     private String contactDetails; // Simple contact info
 
     @OneToMany(mappedBy = "patient")
+    @JsonManagedReference("patient-appointment") // Changed
     private List<Appointment> appointments;
 
     // Getters and Setters
