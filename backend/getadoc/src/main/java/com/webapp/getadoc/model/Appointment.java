@@ -1,6 +1,7 @@
 package com.webapp.getadoc.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Appointment.class)
 public class Appointment {
 
     @Id
@@ -18,12 +20,10 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
-    @JsonIgnoreProperties({ "appointments", "hibernateLazyInitializer", "handler" })
     private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
-    @JsonIgnoreProperties({ "appointments", "hibernateLazyInitializer", "handler" })
     private Patient patient;
 
     private LocalDateTime appointmentTime;

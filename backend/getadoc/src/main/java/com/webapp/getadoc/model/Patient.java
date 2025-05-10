@@ -1,6 +1,7 @@
 package com.webapp.getadoc.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Patient.class)
 public class Patient {
 
     @Id
@@ -18,7 +20,6 @@ public class Patient {
     private String contactDetails; // Simple contact info
 
     @OneToMany(mappedBy = "patient")
-    @JsonManagedReference("patient-appointment") // Changed
     private List<Appointment> appointments;
 
     // Getters and Setters
