@@ -8,8 +8,8 @@ function Navbar() {
         <AppBar position="static">
             <Toolbar>
                 <MedicalServicesIcon sx={{ mr: 2 }} />
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Clinic Management
+                <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                    Get A Doc
                 </Typography>
                 <Box>
                     <Button color="inherit" component={RouterLink} to="/">
